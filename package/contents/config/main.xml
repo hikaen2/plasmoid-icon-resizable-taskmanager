@@ -67,6 +67,10 @@
       <label>Whether to try and always layout task buttons in as many rows/columns as set via maxStripes.</label>
       <default>false</default>
     </entry>
+    <entry name="iconSize" type="Int">
+      <label>The preferred size of task button icons in a vertical task manager.</label>
+      <default>30</default>
+    </entry>
     <entry name="showToolTips" type="Bool">
       <label>Whether to show tooltips when hovering task buttons.</label>
       <default>true</default>

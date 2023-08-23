@@ -26,6 +26,7 @@ Kirigami.FormLayout {
     property alias cfg_fill: fill.checked
     property alias cfg_maxStripes: maxStripes.value
     property alias cfg_forceStripes: forceStripes.checked
+    property alias cfg_iconSize: iconSize.value
     property int cfg_iconSpacing: 0
 
     CheckBox {
@@ -66,6 +67,16 @@ Kirigami.FormLayout {
         id: forceStripes
         text: plasmoidVertical ? i18n("Always arrange tasks in rows of as many columns") : i18n("Always arrange tasks in columns of as many rows")
         enabled: maxStripes.value > 1
+    }
+
+    Item {
+        Kirigami.FormData.isSection: true
+    }
+
+    SpinBox {
+        id: iconSize
+        Kirigami.FormData.label: i18n("Icon size:")
+        from: 1
     }
 
     Item {
