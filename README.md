@@ -1,0 +1,1 @@
+# plasmoid-icon-resizable-taskmanager
