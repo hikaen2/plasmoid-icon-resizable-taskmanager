@@ -95,7 +95,7 @@
         "Icon": "preferences-system-windows",
         "Id": "com.github.hikaen2.icon-resizable-taskmanager",
         "License": "GPL-2.0+",
-        "Name": "Icon-resizable Task Manager",
+        "Name": "Icon Resizable Task Manager",
         "ServiceTypes": [
             "Plasma/Applet"
         ],
