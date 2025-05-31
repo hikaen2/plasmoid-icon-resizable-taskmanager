@@ -112,31 +112,11 @@ function preferredMaxWidth() {
 }
 
 function preferredMinHeight() {
-    // TODO FIXME UPSTREAM: Port to proper font metrics for descenders once we have access to them.
-    return Kirigami.Units.iconSizes.sizeForLabels + 4;
+    return plasmoid.configuration.iconSize;
 }
 
 function preferredMaxHeight() {
-    if (tasks.vertical) {
-        let taskPreferredSize = 0;
-        if (tasks.iconsOnly) {
-            taskPreferredSize = tasks.width / maxStripes();
-        } else {
-            taskPreferredSize = Math.max(Kirigami.Units.iconSizes.sizeForLabels,
-                                         Kirigami.Units.iconSizes.medium);
-        }
-        return verticalMargins() +
-            Math.min(
-                // Do not allow the preferred icon size to exceed the width of
-                // the vertical task manager.
-                tasks.width / maxStripes(),
-                taskPreferredSize);
-    } else {
-        return verticalMargins() +
-            Math.min(
-                Kirigami.Units.iconSizes.small * 3,
-                Kirigami.Units.iconSizes.sizeForLabels * 3);
-    }
+    return plasmoid.configuration.iconSize;
 }
 
 function preferredHeightInPopup() {
