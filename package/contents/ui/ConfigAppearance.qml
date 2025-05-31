@@ -27,6 +27,7 @@ KCMUtils.SimpleKCM {
     property alias cfg_maxStripes: maxStripes.value
     property alias cfg_forceStripes: forceStripes.checked
     property alias cfg_taskMaxWidth: taskMaxWidth.currentIndex
+    property alias cfg_iconSize: iconSize.value
     property int cfg_iconSpacing: 0
 
     Component.onCompleted: {
@@ -146,6 +147,16 @@ KCMUtils.SimpleKCM {
             Kirigami.FormData.label: plasmoidVertical
             ? i18nc("@label:spinbox maximum number of columns for tasks", "Maximum columns:")
             : i18nc("@label:spinbox maximum number of rows for tasks", "Maximum rows:")
+            from: 1
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        QQC2.SpinBox {
+            id: iconSize
+            Kirigami.FormData.label: i18nc("@label:spinbox", "Icon size:")
             from: 1
         }
 
