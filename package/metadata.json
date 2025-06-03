@@ -105,9 +105,9 @@
         "Description[zh_TW]": "顯示圖示與文字的視窗列",
         "EnabledByDefault": true,
         "Icon": "preferences-system-windows",
-        "Id": "com.github.hikaen2.icon-resizable-taskmanager",
+        "Id": "com.github.hikaen2.icon-resizable-taskmanager-6.3",
         "License": "GPL-2.0+",
-        "Name": "Icon Resizable Task Manager",
+        "Name": "Icon-Resizable Icons-and-Text Task Manager",
         "Website": "https://github.com/hikaen2/plasmoid-icon-resizable-taskmanager"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
