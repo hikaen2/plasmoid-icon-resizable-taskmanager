@@ -18,7 +18,8 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.workspace.trianglemousefilter
 
 import org.kde.taskmanager as TaskManager
-import plasma.applet.org.kde.plasma.taskmanager as TaskManagerApplet
+import "code/LayoutMetrics.js" as LayoutMetrics
+import "code/TaskTools.js" as TaskTools
 import org.kde.plasma.workspace.dbus as DBus
 
 PlasmoidItem {
@@ -58,13 +59,13 @@ PlasmoidItem {
         if (shouldShrinkToZero) {
             return Kirigami.Units.gridUnit; // For edit mode
         }
-        return vertical ? 0 : TaskManagerApplet.LayoutMetrics.preferredMinWidth();
+        return vertical ? 0 : LayoutMetrics.preferredMinWidth();
     }
     Layout.minimumHeight: {
         if (shouldShrinkToZero) {
             return Kirigami.Units.gridUnit; // For edit mode
         }
-        return !vertical ? 0 : TaskManagerApplet.LayoutMetrics.preferredMinHeight();
+        return !vertical ? 0 : LayoutMetrics.preferredMinHeight();
     }
 
 //BEGIN TODO: this is not precise enough: launchers are smaller than full tasks
@@ -118,7 +119,7 @@ PlasmoidItem {
     }
 
     function publishIconGeometries(taskItems: /*list<Item>*/var): void {
-        if (TaskManagerApplet.TaskTools.taskManagerInstanceCount >= 2) {
+        if (TaskTools.taskManagerInstanceCount >= 2) {
             return;
         }
         for (let i = 0; i < taskItems.length - 1; ++i) {
@@ -178,7 +179,7 @@ PlasmoidItem {
         groupMode: groupModeEnumValue(Plasmoid.configuration.groupingStrategy)
         groupInline: !Plasmoid.configuration.groupPopups && !tasks.iconsOnly
         groupingWindowTasksThreshold: (Plasmoid.configuration.onlyGroupWhenFull && !tasks.iconsOnly
-            ? TaskManagerApplet.LayoutMetrics.optimumCapacity(tasks.width, tasks.height) + 1 : -1)
+            ? LayoutMetrics.optimumCapacity(tasks.width, tasks.height) + 1 : -1)
 
         onLauncherListChanged: {
             Plasmoid.configuration.launchers = launcherList;
@@ -231,7 +232,7 @@ PlasmoidItem {
         }
     }
 
-    readonly property TaskManagerApplet.Backend backend: TaskManagerApplet.Backend {
+    readonly property Backend backend: Backend {
         id: backend
 
         onAddLauncher: url => {
@@ -264,7 +265,7 @@ PlasmoidItem {
         target: Plasmoid
 
         function onLocationChanged(): void {
-            if (TaskManagerApplet.TaskTools.taskManagerInstanceCount >= 2) {
+            if (TaskTools.taskManagerInstanceCount >= 2) {
                 return;
             }
             // This is on a timer because the panel may not have
@@ -359,7 +360,7 @@ PlasmoidItem {
             visible: false
 
             imagePath: "widgets/tasks"
-            prefix: TaskManagerApplet.TaskTools.taskPrefix("normal", Plasmoid.location)
+            prefix: TaskTools.taskPrefix("normal", Plasmoid.location)
         }
 
         MouseHandler {
@@ -535,7 +536,7 @@ PlasmoidItem {
 
         const task = taskRepeater.itemAt(index) as Task;
         if (task) {
-            TaskManagerApplet.TaskTools.activateTask(task.modelIndex(), task.model, null, task, Plasmoid, this, effectWatcher.registered);
+            TaskTools.activateTask(task.modelIndex(), task.model, null, task, Plasmoid, this, effectWatcher.registered);
         }
     }
 
@@ -562,11 +563,11 @@ PlasmoidItem {
     }
 
     Component.onCompleted: {
-        TaskManagerApplet.TaskTools.taskManagerInstanceCount += 1;
+        TaskTools.taskManagerInstanceCount += 1;
         requestLayout.connect(iconGeometryTimer.restart);
     }
 
     Component.onDestruction: {
-        TaskManagerApplet.TaskTools.taskManagerInstanceCount -= 1;
+        TaskTools.taskManagerInstanceCount -= 1;
     }
 }

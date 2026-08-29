@@ -8,7 +8,7 @@ import QtQuick
 
 import org.kde.taskmanager as TaskManager
 import org.kde.plasma.plasmoid
-import plasma.applet.org.kde.plasma.taskmanager as TaskManagerApplet
+import "code/TaskTools.js" as TaskTools
 
 DropArea {
     id: dropArea
@@ -149,7 +149,7 @@ DropArea {
 
         onTriggered: {
             if (parent.hoveredItem.model.IsGroupParent) {
-                TaskManagerApplet.TaskTools.createGroupDialog(parent.hoveredItem, tasks);
+                TaskTools.createGroupDialog(parent.hoveredItem, tasks);
             } else if (!parent.hoveredItem.model.IsLauncher) {
                 tasksModel.requestActivate(parent.hoveredItem.modelIndex());
             }
@@ -194,7 +194,7 @@ DropArea {
             return;
             }
             while (increment !== 0) {
-                TaskManagerApplet.TaskTools.activateNextPrevTask(anchor, increment < 0, Plasmoid.configuration.wheelSkipMinimized, Plasmoid.configuration.wheelEnabled, tasks);
+                TaskTools.activateNextPrevTask(anchor, increment < 0, Plasmoid.configuration.wheelSkipMinimized, Plasmoid.configuration.wheelEnabled, tasks);
                 increment += (increment < 0) ? 1 : -1;
             }
         }

@@ -9,7 +9,7 @@ import QtQuick.Layouts
 
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
-import plasma.applet.org.kde.plasma.taskmanager as TaskManagerApplet
+import "code/LayoutMetrics.js" as LayoutMetrics
 
 GridLayout {
     property bool animating: false
@@ -47,8 +47,8 @@ GridLayout {
 
         // The number of tasks that will fill a "stripe" before starting the next one
         const maxTasksPerStripe = vertical
-            ? Math.ceil(parent.height / TaskManagerApplet.LayoutMetrics.preferredMinHeight())
-            : Math.ceil(parent.width / TaskManagerApplet.LayoutMetrics.preferredMinWidth())
+            ? Math.ceil(parent.height / LayoutMetrics.preferredMinHeight())
+            : Math.ceil(parent.width / LayoutMetrics.preferredMinWidth())
 
         return Math.min(Math.ceil(count / maxTasksPerStripe), maxStripes)
     }

@@ -10,7 +10,7 @@ import QtQuick.Templates as T
 import org.kde.ksvg as KSvg
 import org.kde.plasma.plasmoid
 
-import plasma.applet.org.kde.plasma.taskmanager as TaskManagerApplet
+import "code/TaskTools.js" as TaskTools
 
 T.ProgressBar {
     id: control
@@ -38,7 +38,7 @@ T.ProgressBar {
             height: parent.height
 
             imagePath: "widgets/tasks"
-            prefix: TaskManagerApplet.TaskTools.taskPrefix("progress", Plasmoid.location).concat(TaskManagerApplet.TaskTools.taskPrefix("hover", Plasmoid.location))
+            prefix: TaskTools.taskPrefix("progress", Plasmoid.location).concat(TaskTools.taskPrefix("hover", Plasmoid.location))
         }
     }
 

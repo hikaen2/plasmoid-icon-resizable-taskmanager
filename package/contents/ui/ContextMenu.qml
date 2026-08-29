@@ -14,12 +14,12 @@ import org.kde.plasma.extras as PlasmaExtras
 
 import org.kde.taskmanager as TaskManager
 import org.kde.plasma.private.mpris as Mpris
-import plasma.applet.org.kde.plasma.taskmanager as TaskManagerApplet
+import "code/LayoutMetrics.js" as LayoutMetrics
 
 PlasmaExtras.Menu {
     id: menu
 
-    required property TaskManagerApplet.Backend backend
+    required property Backend backend
     required property Mpris.Mpris2Model mpris2Source
     required property /*QModelIndex*/var modelIndex
 
@@ -129,7 +129,7 @@ PlasmaExtras.Menu {
         // it would just cut off text rather than eliding. So we do this manually.
         const textMetrics = Qt.createQmlObject("import QtQuick; TextMetrics {}", menu);
         textMetrics.elide = Qt.ElideRight;
-        textMetrics.elideWidth = TaskManagerApplet.LayoutMetrics.maximumContextMenuTextWidth();
+        textMetrics.elideWidth = LayoutMetrics.maximumContextMenuTextWidth();
 
         sections.forEach(section => {
             if (section["actions"].length > 0 || section["group"] === "actions") {
